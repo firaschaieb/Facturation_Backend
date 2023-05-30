@@ -12,31 +12,37 @@ import com.symatique.facturation.repository.*;
 @Service
 public class FactureServiceImpl implements IFactureService {
 	@Autowired
-	FactureRepository FactureRepository;
+	FactureRepository factureRepository;
 	@Autowired
 	DetailsFactureRepository detailFactureRepository;
 
 	@Override
 	public List<Facture> retrieveAllFactures() {
-		return (List<Facture>) FactureRepository.findAll();
+		return (List<Facture>) factureRepository.findAll();
 	}
 
 	@Override
 	public Facture addFacture(Facture r) {
-		FactureRepository.save(r);
+		factureRepository.save(r);
 		return r;
 	}
 
 	@Override
 	public void deleteFacture(Long id) {
 
-		FactureRepository.deleteById(id);
+		factureRepository.deleteById(id);
 
 	}
 	
 	@Override
 	public Facture retrieveFacture(Long id) {
-		return FactureRepository.findById(id).orElse(new Facture());
+		return factureRepository.findById(id).orElse(new Facture());
+	}
+
+	@Override
+	public List<Facture> retrieveFactureByUser(User user) {
+
+		return factureRepository.getFactureByUser(user);
 	}
 	
 	

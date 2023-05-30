@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -47,6 +49,7 @@ public class DetailsBonLivraison implements Serializable {
     @Column(name = "DBL_Det_Unite")
     private String unite;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "BLiv_Id", nullable = false)
     private BonLivraison bonLivraison;

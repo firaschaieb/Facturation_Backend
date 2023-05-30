@@ -12,6 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -56,6 +58,8 @@ public class DetailsFacture implements Serializable {
     @Column(name="DFct_Prix_Ttc")
     private float prixTtc;  
     
+    
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "Fac_Id", referencedColumnName = "Fac_Id", nullable = false)
     private Facture facture;

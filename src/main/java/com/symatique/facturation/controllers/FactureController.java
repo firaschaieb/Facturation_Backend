@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.symatique.facturation.models.Facture;
+import com.symatique.facturation.models.User;
 import com.symatique.facturation.services.IFactureService;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -22,25 +23,31 @@ import com.symatique.facturation.services.IFactureService;
 public class FactureController {
 	
 	 @Autowired
-	    IFactureService FactureService;
+	    IFactureService factureService;
 	    @GetMapping("/all")
 	    @ResponseBody
 	    public List<Facture> getAll() {
-	        return FactureService.retrieveAllFactures();
+	        return factureService.retrieveAllFactures();
 	    }
 	    
 	    @PostMapping("")
 	    @ResponseBody
 	    public Facture addFacture(@RequestBody Facture r) {
-	    	return FactureService.addFacture(r);
+	    	return factureService.addFacture(r);
 	    }
 	    
 		 
 		
 		  @DeleteMapping("/{id}") public void
 		  deleteFacture(@PathVariable Long id) {
-			  FactureService.deleteFacture(id);
+			  factureService.deleteFacture(id);
 		       }
+		  
+		  @GetMapping("/user/{user}")
+		  @ResponseBody
+		  public List<Facture> retrieveAllByUser (@PathVariable User user){
+			  return factureService.retrieveFactureByUser(user);
+		  }
 	    
 	    
 	    

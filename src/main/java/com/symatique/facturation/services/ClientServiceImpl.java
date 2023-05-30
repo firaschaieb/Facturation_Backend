@@ -6,34 +6,55 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.symatique.facturation.models.Client;
+import com.symatique.facturation.models.User;
 import com.symatique.facturation.repository.ClientRepository;
 
 
 @Service
 public class ClientServiceImpl implements IClientService {
 	@Autowired
-	ClientRepository ClientRepository;
+	ClientRepository clientRepository;
 
 	@Override
 	public List<Client> retrieveAllClients() {
-		return (List<Client>) ClientRepository.findAll();
+		return (List<Client>) clientRepository.findAll();
 	}
 
+	
+	
 	@Override
 	public Client addClient(Client r) {
-		ClientRepository.save(r);
+		clientRepository.save(r);
 		return r;
 	}
 
 	@Override
 	public void deleteClient(Long id) {
 
-		ClientRepository.deleteById(id);
+		clientRepository.deleteById(id);
 
 	}
 	
 	@Override
 	public Client retrieveClient(Long id) {
-		return ClientRepository.findById(id).orElse(new Client());
+		return clientRepository.findById(id).orElse(new Client());
 	}
+
+
+
+	@Override
+	public List<Client> retieveAllByUser(User user) {
+		
+		return clientRepository.findAllByUser(user);
+	}
+
+
+
+/*
+ * @Override public Client modifyClient(Long clientId, Client client) {
+ * 
+ * return clientRepository.findAndReplace(clientId, client); } }
+ */
+	
+	
 }

@@ -18,6 +18,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.validation.groups.Default;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -54,7 +56,9 @@ public class BonLivraison implements Serializable {
     @Column(name="BLiv_Paiement")
     private String paiement;
     
-    @ManyToOne @JoinColumn(name="user_id", nullable=false)
+    @JsonBackReference
+    @ManyToOne
+    @JoinColumn(name="user_id", nullable=false)
     private User user;
     
 

@@ -18,6 +18,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -60,7 +62,9 @@ public class Facture implements Serializable {
     @Column(name="Fac_Paiement")
     private String paiement;
     
-   @ManyToOne @JoinColumn(name="user_id", nullable=false)
+    @JsonBackReference
+    @ManyToOne
+   @JoinColumn(name="user_id", nullable=false)
     private User user;
     
             

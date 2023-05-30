@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.symatique.facturation.models.DetailsStock;
+import com.symatique.facturation.models.Stock;
 import com.symatique.facturation.services.IDetailsStockService;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -22,29 +23,34 @@ import com.symatique.facturation.services.IDetailsStockService;
 public class DetailsStockController {
 	
 	 @Autowired
-	    IDetailsStockService DetailsStockService;
+	    IDetailsStockService detailsStockService;
 	    @GetMapping("/all")
 	    @ResponseBody
 	    public List<DetailsStock> getAll() {
-	        return DetailsStockService.retrieveAllDetailsStocks();
+	        return detailsStockService.retrieveAllDetailsStocks();
 	    }
 	    
 	    @PostMapping("")
 	    @ResponseBody
 	    public DetailsStock addDetailsStock(@RequestBody DetailsStock r) {
-	    	return DetailsStockService.addDetailsStock(r);
+	    	return detailsStockService.addDetailsStock(r);
 	    }
 	    
 		 
 		
 		  @DeleteMapping("/{id}") public void
 		  deleteDetailsStock(@PathVariable Long id) {
-			  DetailsStockService.deleteDetailsStock(id);
+			  detailsStockService.deleteDetailsStock(id);
 		       }
 	    
 	    
 	    
-
+		  @GetMapping("/stock/{stock}")
+		  @ResponseBody
+		  public List<DetailsStock> retrieveAllByStock (@PathVariable Stock stock){
+			  return detailsStockService.retrieveAllDetilsByStock(stock);
+					  
+		  }
 	
 
 }

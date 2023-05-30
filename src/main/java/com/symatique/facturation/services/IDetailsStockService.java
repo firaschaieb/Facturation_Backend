@@ -3,6 +3,7 @@ package com.symatique.facturation.services;
 import java.util.List;
 
 import com.symatique.facturation.models.DetailsStock;
+import com.symatique.facturation.models.Stock;
 
 public interface IDetailsStockService {
 
@@ -13,5 +14,7 @@ public interface IDetailsStockService {
 	void deleteDetailsStock(Long id);
 
 	DetailsStock retrieveDetailsStock(Long id);
+	
+	List<DetailsStock> retrieveAllDetilsByStock(Stock stock) ;
 }
 
