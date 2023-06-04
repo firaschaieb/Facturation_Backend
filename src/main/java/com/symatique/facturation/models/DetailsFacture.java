@@ -59,7 +59,7 @@ public class DetailsFacture implements Serializable {
     private float prixTtc;  
     
     
-    @JsonBackReference
+    @JsonBackReference(value ="facture_details")
     @ManyToOne
     @JoinColumn(name = "Fac_Id", referencedColumnName = "Fac_Id", nullable = false)
     private Facture facture;

@@ -1,6 +1,10 @@
 package com.symatique.facturation.models;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,7 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -57,17 +61,24 @@ public class Client  implements Serializable{
     @Column(name="Cli_address")
     private String address;
     
+    @Column(name="Cli_Numero")
+    private String numero;
+    
    
 
 
-    @JsonBackReference
+    @JsonBackReference(value ="user_client")
    @ManyToOne 
    @JoinColumn(name="user_id", nullable=false)
     private User user;
     
+    @JsonBackReference(value ="facture_client")
+    @OneToMany(targetEntity = Facture.class, mappedBy = "client", cascade = CascadeType.ALL)
+    private List<Facture> factures = new ArrayList<>();
+
     
-
-
+    @OneToMany(targetEntity = BonLivraison.class, mappedBy = "client", cascade = CascadeType.ALL)
+    private List<BonLivraison> bonLivraisons = new ArrayList<>();
     
     
     public User getUser() {
@@ -101,16 +112,46 @@ public void setUser(User user) {
     public String getAddress() {
         return address;
     }
+    
+    
 
-    public void setAddress(String address) {
+    public String getNumero() {
+		return numero;
+	}
+
+	public void setNumero(String numero) {
+		this.numero = numero;
+	}
+
+	public void setAddress(String address) {
         this.address = address;
     }
 
     public void setId(Long id) {
         this.id = id;
     }
+    
+    
+    
+    
 
-    @Override
+    public List<Facture> getFactures() {
+		return factures;
+	}
+
+	public void setFactures(List<Facture> factures) {
+		this.factures = factures;
+	}
+
+	public List<BonLivraison> getBonLivraisons() {
+		return bonLivraisons;
+	}
+
+	public void setBonLivraisons(List<BonLivraison> bonLivraisons) {
+		this.bonLivraisons = bonLivraisons;
+	}
+
+	@Override
     public int hashCode() {
         int hash = 0;
         hash += (id != null ? id.hashCode() : 0);

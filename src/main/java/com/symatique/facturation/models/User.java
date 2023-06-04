@@ -74,7 +74,7 @@ public class User implements Serializable{
 	    @OneToMany(targetEntity = Facture.class, mappedBy = "user", cascade = CascadeType.ALL)
 	    private List<Facture> factures = new ArrayList<>();
 	    
-		 @JsonBackReference
+
 	    @OneToOne(mappedBy = "user")
 	    private Stock stock;
 

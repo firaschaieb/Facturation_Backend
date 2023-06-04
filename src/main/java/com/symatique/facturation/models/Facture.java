@@ -62,8 +62,9 @@ public class Facture implements Serializable {
     @Column(name="Fac_Paiement")
     private String paiement;
     
-    @JsonBackReference
+
     @ManyToOne
+    @JsonBackReference(value ="facture_user")
    @JoinColumn(name="user_id", nullable=false)
     private User user;
     
@@ -72,6 +73,11 @@ public class Facture implements Serializable {
     private List<Piece> pieces = new ArrayList<>();
     
 
+
+    @ManyToOne
+    @JoinColumn(name="client_id", nullable=false)
+    private Client client;
+    
     @OneToMany(mappedBy = "facture", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<DetailsFacture> detailsFacture;
     
@@ -89,7 +95,15 @@ public class Facture implements Serializable {
     
     
     
-    public Date getDate() {
+    public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
+	}
+
+	public Date getDate() {
         return date;
     }
 

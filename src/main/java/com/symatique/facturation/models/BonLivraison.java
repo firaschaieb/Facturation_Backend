@@ -56,13 +56,17 @@ public class BonLivraison implements Serializable {
     @Column(name="BLiv_Paiement")
     private String paiement;
     
-    @JsonBackReference
+
     @ManyToOne
+    @JsonBackReference(value ="user_bl")
     @JoinColumn(name="user_id", nullable=false)
     private User user;
     
 
-
+	@JsonBackReference(value ="client_bl")
+    @ManyToOne
+    @JoinColumn(name="client_id", nullable=false)
+    private Client client;
 
     
 
@@ -87,6 +91,14 @@ public class BonLivraison implements Serializable {
     
 
 
+
+    public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
+	}
 
 
     public User getUser() {

@@ -15,6 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
@@ -55,7 +56,7 @@ public class Stock  implements Serializable{
     private String libelle;
     
     @OneToOne
-    @JsonManagedReference
+    @JsonBackReference(value ="user_stock")
     @JoinColumn( name="user_id" )
      private User user;
 

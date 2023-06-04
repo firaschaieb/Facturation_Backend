@@ -12,6 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import lombok.AllArgsConstructor;
@@ -52,11 +54,12 @@ public class DetailsStock implements Serializable {
             
     @Column(name="DSto_Date_Exp")
     @Temporal(javax.persistence.TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateExp;
     
     
    @ManyToOne
-   @JsonBackReference
+   @JsonBackReference(value ="stock_details")
    @JoinColumn(name="Sto_Id", nullable=false)
     private Stock stock;
 
