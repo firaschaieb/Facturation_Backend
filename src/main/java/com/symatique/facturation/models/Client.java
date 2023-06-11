@@ -64,6 +64,16 @@ public class Client  implements Serializable{
     @Column(name="Cli_Numero")
     private String numero;
     
+    @Column(name="Cli_Lng")
+    private String longitude;
+    
+    
+    @Column(name="Cli_Lat")
+    private String latitude;
+    
+    
+
+    
    
 
 
@@ -115,7 +125,23 @@ public void setUser(User user) {
     
     
 
-    public String getNumero() {
+    public String getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(String longitude) {
+		this.longitude = longitude;
+	}
+
+	public String getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(String latitude) {
+		this.latitude = latitude;
+	}
+
+	public String getNumero() {
 		return numero;
 	}
 

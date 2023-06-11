@@ -3,6 +3,7 @@ package com.symatique.facturation.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.symatique.facturation.models.DetailsStock;
 import com.symatique.facturation.models.Stock;
+import com.symatique.facturation.repository.DetailsStockRepository;
 import com.symatique.facturation.services.IDetailsStockService;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -24,6 +26,12 @@ public class DetailsStockController {
 	
 	 @Autowired
 	    IDetailsStockService detailsStockService;
+
+	 @Autowired
+	 DetailsStockRepository  dstockRepo; 
+	 
+	 
+	 
 	    @GetMapping("/all")
 	    @ResponseBody
 	    public List<DetailsStock> getAll() {
@@ -51,6 +59,13 @@ public class DetailsStockController {
 			  return detailsStockService.retrieveAllDetilsByStock(stock);
 					  
 		  }
+		    
+			  @GetMapping("/ref")
+			  @ResponseBody
+			  public List<DetailsStock> retrieveAllByRefernceArticle (@Param("referenceArticle") String refereceArticle){
+				  return dstockRepo.findAllByReferenceArticle(refereceArticle);
+						  
+			  }
 	
 
 }

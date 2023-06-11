@@ -39,6 +39,11 @@ public class DetailsBonLivraison implements Serializable {
 
     @Column(name = "DBL_Reference")
     private String refercnce;
+    
+    @Column(name = "DBL_Libelle")
+    private String libelle;
+    
+    
 
     @Column(name = "DBL_Det_Prix")
     private float prix;
@@ -59,7 +64,15 @@ public class DetailsBonLivraison implements Serializable {
     
     
 
-    public String getRefercnce() {
+    public String getLibelle() {
+		return libelle;
+	}
+
+	public void setLibelle(String libelle) {
+		this.libelle = libelle;
+	}
+
+	public String getRefercnce() {
         return refercnce;
     }
 

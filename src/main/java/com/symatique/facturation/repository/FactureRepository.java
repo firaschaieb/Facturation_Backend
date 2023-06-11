@@ -9,5 +9,6 @@ import com.symatique.facturation.models.*;
 @Repository
 public interface FactureRepository extends JpaRepository<Facture, Long>{
 	List<Facture> getFactureByUser (User user) ;
+	List<Facture> getFactureByClient (Client client);
 
 }

@@ -42,6 +42,11 @@ public class DetailsFacture implements Serializable {
     @Column(name="DFct_Reference")
     private String refercnce;
     
+
+    @Column(name="DFct_Libelle")
+    private String libelle;
+
+    
     @Column(name="DFct_Prix_Ht")
     private float prixHt;
     
@@ -128,8 +133,18 @@ public class DetailsFacture implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+    
+    
 
-    @Override
+    public String getLibelle() {
+		return libelle;
+	}
+
+	public void setLibelle(String libelle) {
+		this.libelle = libelle;
+	}
+
+	@Override
     public int hashCode() {
         int hash = 0;
         hash += (id != null ? id.hashCode() : 0);

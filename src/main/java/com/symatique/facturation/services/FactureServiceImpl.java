@@ -44,6 +44,12 @@ public class FactureServiceImpl implements IFactureService {
 
 		return factureRepository.getFactureByUser(user);
 	}
+
+	@Override
+	public List<Facture> retrieveFactureByClient(Client client) {
+		
+		return factureRepository.getFactureByClient(client);
+	}
 	
 	
 

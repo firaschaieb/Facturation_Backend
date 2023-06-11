@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.symatique.facturation.models.DetailsFacture;
+import com.symatique.facturation.models.Facture;
 import com.symatique.facturation.services.IDetailsFactureService;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -22,27 +23,30 @@ import com.symatique.facturation.services.IDetailsFactureService;
 public class DetailsFactureController {
 	
 	 @Autowired
-	    IDetailsFactureService DetailsFactureService;
+	    IDetailsFactureService detailsFactureService;
 	    @GetMapping("/all")
 	    @ResponseBody
 	    public List<DetailsFacture> getAll() {
-	        return DetailsFactureService.retrieveAllDetailsFactures();
+	        return detailsFactureService.retrieveAllDetailsFactures();
 	    }
 	    
 	    @PostMapping("")
 	    @ResponseBody
 	    public DetailsFacture addDetailsFacture(@RequestBody DetailsFacture r) {
-	    	return DetailsFactureService.addDetailsFacture(r);
+	    	return detailsFactureService.addDetailsFacture(r);
 	    }
 	    
 		 
 		
 		  @DeleteMapping("/{id}") public void
 		  deleteDetailsFacture(@PathVariable Long id) {
-			  DetailsFactureService.deleteDetailsFacture(id);
+			  detailsFactureService.deleteDetailsFacture(id);
 		       }
-	    
-	    
+		 @GetMapping("/facture/{facture}")
+	    @ResponseBody
+	    public List<DetailsFacture> getAllByFacture(@PathVariable Facture facture){
+	    	return detailsFactureService.retrieveAllDetailsByFActure(facture);
+	    }
 	    
 
 	

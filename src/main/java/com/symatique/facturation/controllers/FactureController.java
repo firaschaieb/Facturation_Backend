@@ -57,6 +57,15 @@ public class FactureController {
 			  return factureService.retrieveFactureByUser(user);
 		  }
 		  
+		  
+		  
+		  @GetMapping("/client/{client}")
+		  @ResponseBody
+		  public List<Facture> retrieveAllByClient (@PathVariable Client client){
+			  return factureService.retrieveFactureByClient(client);
+		  }
+		  
+		  
 		  @PutMapping("/total/{idFac}")
 		  @ResponseBody
 		  public ResponseEntity<Facture> updateTotalFacture (@PathVariable Long idFac , @RequestBody Facture updatedFacture) {
@@ -76,6 +85,7 @@ public class FactureController {
 		        return ResponseEntity.ok(savedFacture);
 		  }
 	    
+		  
 	    
 	    
 

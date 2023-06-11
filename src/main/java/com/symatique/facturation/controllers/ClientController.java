@@ -59,6 +59,10 @@ public class ClientController {
 		    	return clientService.retieveAllByUser(user);
 		    } 
 		    
+		    
+
+		    
+		    
 		    @PutMapping("/{id}")
 		    public ResponseEntity<Client> updateClient(@PathVariable Long id, @RequestBody Client updatedClient) {
 		        Client client = clientService.retrieveClient(id);

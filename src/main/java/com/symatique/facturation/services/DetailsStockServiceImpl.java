@@ -43,4 +43,8 @@ public class DetailsStockServiceImpl implements IDetailsStockService{
 	
 		return detailsStockRepository.findAllByStock(stock);
 	}
+	
+	
+	
+	
 }

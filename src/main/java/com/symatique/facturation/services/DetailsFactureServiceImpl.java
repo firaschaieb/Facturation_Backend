@@ -6,34 +6,41 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.symatique.facturation.models.DetailsFacture;
+import com.symatique.facturation.models.Facture;
 import com.symatique.facturation.repository.DetailsFactureRepository;
 
 
 @Service
 public class DetailsFactureServiceImpl implements IDetailsFactureService{
 	@Autowired
-	DetailsFactureRepository DetailsFactureRepository;
+	DetailsFactureRepository detailsFactureRepository;
 
 	@Override
 	public List<DetailsFacture> retrieveAllDetailsFactures() {
-		return (List<DetailsFacture>) DetailsFactureRepository.findAll();
+		return (List<DetailsFacture>) detailsFactureRepository.findAll();
 	}
 
 	@Override
 	public DetailsFacture addDetailsFacture(DetailsFacture r) {
-		DetailsFactureRepository.save(r);
+		detailsFactureRepository.save(r);
 		return r;
 	}
 
 	@Override
 	public void deleteDetailsFacture(Long id) {
 
-		DetailsFactureRepository.deleteById(id);
+		detailsFactureRepository.deleteById(id);
 
 	}
 	
 	@Override
 	public DetailsFacture retrieveDetailsFacture(Long id) {
-		return DetailsFactureRepository.findById(id).orElse(new DetailsFacture());
+		return detailsFactureRepository.findById(id).orElse(new DetailsFacture());
+	}
+
+	@Override
+	public List<DetailsFacture> retrieveAllDetailsByFActure(Facture facture) {
+
+		return detailsFactureRepository.findByFacture(facture);
 	}
 }
